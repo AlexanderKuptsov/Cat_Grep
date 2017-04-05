@@ -54,19 +54,15 @@ public class Crep {
     }
 
     public void word(String[] args) throws FileNotFoundException {
-        StringBuilder newLines = new StringBuilder();
         String fileName = args[args.length - 1];
         File file = new File(fileName);
+        exists(fileName);
+        StringBuilder newLines = new StringBuilder();
         String word = args[args.length - 2];
         boolean checkR = false;
-        String pattern = "";
-        if (Objects.equals(args[0], "-r")) {
-            pattern = word;
-            checkR = true;
-        }
-        exists(fileName);
         boolean checkI = false;
         boolean checkV = false;
+        String pattern = "";
         for (String arg : args) {
             if (Objects.equals(arg, "-i")) {//игнорирование регистра слов
                 checkI = true;
@@ -75,7 +71,11 @@ public class Crep {
             if (Objects.equals(arg, "-v")) { //инвертирует условие фильтрации
                 checkV = true;
             }
-            if (Objects.equals(arg, "-h")) {
+            if (Objects.equals(arg, "-r")) { //вместо слова задается регулярное выражение для поиска
+                pattern = word;
+                checkR = true;
+            }
+            if (Objects.equals(arg, "-h")) { //помощь
                 System.out.print("Введите нужные вам команды и имя файла\n" +
                         "word - задает слово для поиска (на консоль выводится только содержащие его строки\n" +
                         "[-r] - (regex) вместо слова задает регулярное выражение для поиска (на консоль выводятся " +
@@ -93,34 +93,30 @@ public class Crep {
                         if (checkI) { //игнорирование регистра слов
                             line = line.toLowerCase();
                         }
-                        if (!checkR) {
+                        if (!checkR) { // (regex)
                             if (line.contains(word)) {
-                                newLines.append(line);
-                                newLines.append("\n");
+                                newLines.append(line).append("\n");
                             }
                         } else {
                             Pattern r = Pattern.compile(pattern);  // Создание Pattern объекта
                             Matcher m = r.matcher(line);
                             if (m.find()) {
-                                newLines.append(line);
-                                newLines.append("\n");
+                                newLines.append(line).append("\n");
                             }
                         }
                     } else {
                         if (checkI) { //игнорирование регистра слов
                             line = line.toLowerCase();
                         }
-                        if (!checkR) {
+                        if (!checkR) { // (regex)
                             if (!line.contains(word)) {
-                                newLines.append(line);
-                                newLines.append("\n");
+                                newLines.append(line).append("\n");
                             }
                         } else {
                             Pattern r = Pattern.compile(pattern);  // Создание Pattern объекта
                             Matcher m = r.matcher(line);
                             if (!m.find()) {
-                                newLines.append(line);
-                                newLines.append("\n");
+                                newLines.append(line).append("\n");
                             }
                         }
                     }
