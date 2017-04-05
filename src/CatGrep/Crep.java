@@ -131,10 +131,10 @@ public class Crep {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //System.out.println(newLines.toString());
         String newFileName = "C:\\\\files\\new.txt";
         createNewFile(newFileName, newLines.toString());
         output(newFileName);
+        //System.out.println(newLines.toString());
     }
 
     public static void main(String[] args) throws FileNotFoundException {
