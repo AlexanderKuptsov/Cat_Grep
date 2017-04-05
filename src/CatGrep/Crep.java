@@ -130,7 +130,6 @@ public class Crep {
         String newFileName = "C:\\\\files\\new.txt";
         createNewFile(newFileName, newLines.toString());
         output(newFileName);
-        //System.out.println(newLines.toString());
     }
 
     public static void main(String[] args) throws FileNotFoundException {
