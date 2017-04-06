@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
  * Created by shurik on 16.03.2017.
  */
 public class Crep {
+    private static StringBuilder newLines = new StringBuilder();
 
     private static void exists(String fileName) throws FileNotFoundException { // проверка существования файла
         File file = new File(fileName);
@@ -18,11 +19,10 @@ public class Crep {
         }
     }
 
-    public void word(String[] args) throws FileNotFoundException {
+    public String word(String[] args) throws FileNotFoundException {
         String fileName = args[args.length - 1];
         File file = new File(fileName);
         exists(fileName);
-        StringBuilder newLines = new StringBuilder();
         String word = args[args.length - 2];
         boolean checkR = false;
         boolean checkI = false;
@@ -70,7 +70,7 @@ public class Crep {
                             }
                         }
                     } else {
-                        if (checkI) { //игнорирование регистра слов
+                        if (!checkI) { //игнорирование регистра слов
                             line = line.toLowerCase();
                         }
                         if (!checkR) { // (regex)
@@ -92,11 +92,12 @@ public class Crep {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(newLines.toString());
+        return newLines.toString();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
         Crep result = new Crep();
         result.word(args);
+        System.out.println(newLines.toString());
     }
 }
