@@ -18,41 +18,6 @@ public class Crep {
         }
     }
 
-    public static void createNewFile(String newFile, String text) {
-        File file = new File(newFile);
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-            try {
-                out.print(text); //Запись текста в файл
-            } finally {
-                out.close();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void output(String fileName) throws FileNotFoundException {
-        exists(fileName);
-        File newFile = new File(fileName);
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(newFile.getAbsoluteFile()));
-            try {
-                String line;
-                while ((line = in.readLine()) != null) {
-                    System.out.println(line);
-                }
-            } finally {
-                in.close();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void word(String[] args) throws FileNotFoundException {
         String fileName = args[args.length - 1];
         File file = new File(fileName);
@@ -127,9 +92,7 @@ public class Crep {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        String newFileName = "C:\\\\files\\new.txt";
-        createNewFile(newFileName, newLines.toString());
-        output(newFileName);
+        System.out.println(newLines.toString());
     }
 
     public static void main(String[] args) throws FileNotFoundException {
