@@ -29,18 +29,18 @@ public class Crep {
         boolean checkV = false;
         String pattern = "";
         for (String arg : args) {
-            if (Objects.equals(arg, "-i")) {//игнорирование регистра слов
+            if (Objects.equals(arg, "-i")) {// игнорирование регистра слов
                 checkI = true;
                 word = word.toLowerCase();
             }
-            if (Objects.equals(arg, "-v")) { //инвертирует условие фильтрации
+            if (Objects.equals(arg, "-v")) { // инвертирует условие фильтрации
                 checkV = true;
             }
-            if (Objects.equals(arg, "-r")) { //вместо слова задается регулярное выражение для поиска
+            if (Objects.equals(arg, "-r")) { // вместо слова задается регулярное выражение для поиска
                 pattern = word;
                 checkR = true;
             }
-            if (Objects.equals(arg, "-h")) { //помощь
+            if (Objects.equals(arg, "-h")) { // помощь
                 System.out.print("Введите нужные вам команды и имя файла\n" +
                         "word - задает слово для поиска (на консоль выводится только содержащие его строки\n" +
                         "[-r] - (regex) вместо слова задает регулярное выражение для поиска (на консоль выводятся " +
@@ -54,8 +54,8 @@ public class Crep {
             try {
                 String line;
                 while ((line = in.readLine()) != null) {
-                    if (!checkV) { //инвертирует условие фильтрации
-                        if (checkI) { //игнорирование регистра слов
+                    if (!checkV) { // инвертирует условие фильтрации
+                        if (checkI) { // игнорирование регистра слов
                             line = line.toLowerCase();
                         }
                         if (!checkR) { // (regex)
