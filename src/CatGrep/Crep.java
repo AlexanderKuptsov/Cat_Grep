@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
  */
 public class Crep {
     private static StringBuilder newLines = new StringBuilder();
+    private static boolean checkV = false;
 
     private static void exists(String fileName) throws FileNotFoundException { // проверка существования файла
         File file = new File(fileName);
@@ -26,7 +27,6 @@ public class Crep {
         String word = args[args.length - 2];
         boolean checkR = false;
         boolean checkI = false;
-        boolean checkV = false;
         String pattern = "";
         for (String arg : args) {
             if (Objects.equals(arg, "-i")) {// игнорирование регистра слов
@@ -97,7 +97,14 @@ public class Crep {
 
     public static void main(String[] args) throws FileNotFoundException {
         Crep result = new Crep();
+        if (args.length < 2) {
+            System.out.println("Нет аргументов");
+            System.exit(0);
+        }
         result.word(args);
+        String yesNo = checkV ? " не" : "";
+        System.out.println("Строки из файла " + args[args.length - 1] + yesNo + " содержащие \"" +
+                args[args.length - 2] + "\"\n");
         System.out.println(newLines.toString());
     }
 }
