@@ -1,9 +1,7 @@
 package CatGrep;
 
-import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.Assert.*;

@@ -25,7 +25,7 @@ public class Crep {
         String word = args[args.length - 2];
         String pattern = "";
 
-        CrepFilter crepChecker = new CrepFilter(args);
+        CrepArgumentReader crepChecker = new CrepArgumentReader(args);
         if (crepChecker.getCheckI()) {// игнорирование регистра слов
             word = word.toLowerCase();
         }
@@ -57,7 +57,7 @@ public class Crep {
 
     public static void main(String[] args) throws IOException {
         Crep result = new Crep();
-        CrepFilter crepFilter = new CrepFilter(args);
+        CrepArgumentReader crepFilter = new CrepArgumentReader(args);
         if (args.length < 2) {
             System.out.print(!Objects.equals(crepFilter.getCheckH(), "") ?
                     crepFilter.getCheckH() : "Нет аргументов");

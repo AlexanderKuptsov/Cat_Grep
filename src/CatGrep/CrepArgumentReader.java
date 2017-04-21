@@ -5,13 +5,13 @@ import java.util.Objects;
 /**
  * Created by shurik on 13.04.2017.
  */
-class CrepFilter {
+class CrepArgumentReader {
     private boolean checkR = false;
     private boolean checkI = false;
     private boolean checkV = false;
     private boolean checkH = false;
 
-    CrepFilter(String[] args) {
+    CrepArgumentReader(String[] args) {
         for (String arg : args) {
             if (Objects.equals(arg, "-i")) { // игнорирование регистра слов
                 checkI = true;
