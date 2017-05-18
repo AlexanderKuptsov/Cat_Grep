@@ -55,7 +55,7 @@ public class Crep {
         return newLines.toString();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Crep result = new Crep();
         CrepArgumentReader crepFilter = new CrepArgumentReader(args);
         if (args.length < 2) {
@@ -67,6 +67,10 @@ public class Crep {
         String yesNo = crepFilter.getCheckV() ? " не" : "";
         System.out.println("Строки из файла " + args[args.length - 1] + yesNo + " содержащие \"" +
                 args[args.length - 2] + "\"\n");
-        System.out.println(result.word(args));
+        try {
+            System.out.println(result.word(args));
+        } catch (IOException e) {
+            System.err.println("Введены некоректные данные");
+        }
     }
 }
